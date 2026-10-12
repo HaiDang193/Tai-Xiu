@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tài Xỉu Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="logo"><span class="t">TÀI</span><span class="x">XỈU</span><small>DEMO · TIỀN ẢO</small></div>
+  <div class="wallet" id="wallet">
+    <span class="label">Số dư</span>
+    <b id="balance">0$</b>
+    <button class="btn-gold" id="btnDeposit">+ Nạp</button>
+  </div>
+  <button class="icon-btn" id="btnSound" title="Âm thanh">🔊</button>
+</header>
+
+<main class="table">
+  <button class="side tai" data-side="tai">
+    <span class="name">TÀI</span><span class="range">11 – 18</span><span class="odds">x1.98</span>
+    <span class="stake" id="stake-tai"></span>
+  </button>
+
+  <div class="center">
+    <div class="plate" id="plate">
+      <div class="dice">
+        <div class="slot"><div class="die"></div></div>
+        <div class="slot"><div class="die"></div></div>
+        <div class="slot"><div class="die"></div></div>
+      </div>
+      <div class="lid"><span>ĐANG LẮC</span></div>
+    </div>
+    <div class="result">
+      <div class="sum" id="sum">?</div>
+      <em id="resultText">Chọn cửa &amp; đặt cược</em>
+    </div>
+  </div>
+
+  <button class="side xiu" data-side="xiu">
+    <span class="name">XỈU</span><span class="range">3 – 10</span><span class="odds">x1.98</span>
+    <span class="stake" id="stake-xiu"></span>
+  </button>
+</main>
+
+<section class="controls">
+  <div class="bet-box">
+    <label>Tiền cược</label>
+    <input id="betInput" type="number" min="0" step="0.01" value="0">
+    <button id="btnClear">Xoá</button>
+  </div>
+  <div class="chips">
+    <button class="chip" data-v="10"  style="--c:#2e9d5b">10</button>
+    <button class="chip" data-v="50"  style="--c:#2f6fd6">50</button>
+    <button class="chip" data-v="100" style="--c:#c4242f">100</button>
+    <button class="chip" data-v="500" style="--c:#7a2fd6">500</button>
+    <button class="chip" data-v="all" style="--c:#111;color:var(--gold)">ALL</button>
+  </div>
+  <button class="roll" id="btnRoll">LẮC NGAY</button>
+  <label class="rig"><input type="checkbox" id="rig" checked> Nhà cái bịp khi all-in</label>
+</section>
+
+<section class="bottom">
+  <div class="panel">
+    <h3>Soi cầu <span id="stats"></span></h3>
+    <div id="beads"></div>
+  </div>
+  <div class="panel">
+    <h3>Nhật ký</h3>
+    <ul id="log"></ul>
+  </div>
+</section>
+
+<!-- Nạp tiền -->
+<div class="modal open" id="depositModal">
+  <div class="box">
+    <h2>💰 Nạp tiền</h2>
+    <p>Tiền ảo để chơi thử — không phải tiền thật</p>
+    <input id="depositInput" type="number" min="0" step="0.01" placeholder="0">
+    <div class="presets">
+      <button data-v="100">100</button><button data-v="500">500</button>
+      <button data-v="1000">1.000</button><button data-v="5000">5.000</button>
+    </div>
+    <button class="btn-gold" id="btnConfirmDeposit">NẠP &amp; VÀO BÀN</button>
+  </div>
+</div>
+
+<!-- Hết tiền -->
+<div class="modal" id="overModal">
+  <div class="box">
+    <div class="dots"><span>.</span><span>.</span><span>.</span></div>
+    <h2>Đánh ngu vãi 😭</h2>
+    <p>Hết sạch tiền rồi. Nạp lại làm ván mới không?</p>
+    <button class="btn-gold" id="btnReDeposit">NẠP LẠI</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<!-- Thứ tự quan trọng: file sau dùng hàm của file trước -->
+<script src="js/utils.js"></script>
+<script src="js/sound.js"></script>
+<script src="js/dice.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>
