@@ -208,6 +208,31 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   100% { transform: translate(var(--x), 70vh) rotate(var(--r)); opacity: 0; }
 }
 
+/* ---------- Âm thanh ---------- */
+.audio-ctl { display: flex; align-items: center; gap: 8px; }
+.icon-btn { display: grid; place-items: center; transition: opacity .2s, border-color .2s; }
+.icon-btn:hover { border-color: rgba(255,207,90,.5); }
+.icon-btn.off { opacity: .4; }
+.eq { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+.eq i { width: 3px; height: 4px; border-radius: 2px; background: var(--gold); transition: height .3s; }
+#btnMusic.playing .eq i { animation: eq .9s ease-in-out infinite; }
+#btnMusic.playing .eq i:nth-child(2) { animation-delay: -.3s; }
+#btnMusic.playing .eq i:nth-child(3) { animation-delay: -.6s; }
+#btnMusic.playing .eq i:nth-child(4) { animation-delay: -.15s; }
+@keyframes eq { 0%, 100% { height: 4px; } 50% { height: 16px; } }
+#volume { width: 90px; accent-color: var(--gold); cursor: pointer; }
+
+/* ---------- Cảm giác bấm nút ---------- */
+button { position: relative; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+.ripple {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  background: rgba(255,255,255,.4); transform: scale(0); animation: ripple .6s ease-out forwards;
+}
+@keyframes ripple { to { transform: scale(1); opacity: 0; } }
+.btn-gold:active:not(:disabled), .roll:active:not(:disabled), .icon-btn:active { transform: translateY(1px) scale(.97); }
+.roll:not(:disabled) { animation: rollGlow 2.2s ease-in-out infinite; }
+@keyframes rollGlow { 50% { box-shadow: 0 10px 46px rgba(255,180,40,.65), inset 0 -3px 0 rgba(0,0,0,.2); } }
+
 /* ---------- Điện thoại ---------- */
 @media (max-width: 820px) {
   .top { padding: 14px 16px; flex-wrap: wrap; }
@@ -220,4 +245,5 @@ button:disabled { cursor: not-allowed; opacity: .45; }
   .bottom { grid-template-columns: 1fr; padding: 0 16px; }
   .controls { padding: 16px; }
   .chip { width: 48px; height: 48px; font-size: 11px; }
+  #volume { display: none; }
 }

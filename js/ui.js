@@ -28,7 +28,10 @@ function log(msg, cls = '') {
   $('#log').prepend(li);
 }
 
-function toast(msg) {
+// kind: 'info' (tiếng ting) | 'error' (tiếng báo lỗi) | 'silent'
+function toast(msg, kind = 'info') {
+  if (kind === 'error') sfx.error();
+  else if (kind === 'info') sfx.notify();
   const t = document.createElement('div');
   t.className = 'toast';
   t.textContent = msg;
@@ -56,6 +59,16 @@ function lockUI(lock) {
 }
 
 // ----- Hiệu ứng -----
+// Vệt sóng lan ra từ chỗ bấm
+function ripple(btn, e) {
+  const r = btn.getBoundingClientRect(), s = Math.max(r.width, r.height) * 2;
+  const el = document.createElement('span');
+  el.className = 'ripple';
+  el.style.cssText = `width:${s}px;height:${s}px;left:${e.clientX - r.left - s / 2}px;top:${e.clientY - r.top - s / 2}px`;
+  btn.appendChild(el);
+  setTimeout(() => el.remove(), 650);
+}
+
 function confetti() {
   const colors = ['#ffcf5a', '#ff3b5c', '#38b6ff', '#5dffa0', '#ffffff', '#c084fc'];
   for (let i = 0; i < 110; i++) {
